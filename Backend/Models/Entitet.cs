@@ -1,6 +1,8 @@
-﻿namespace Backend.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Backend.Models
 {
-    public class Entitet
+    public abstract class Entitet
     {
 
         [Key]
