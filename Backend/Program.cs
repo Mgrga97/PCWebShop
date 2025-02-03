@@ -1,3 +1,6 @@
+using Backend.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +10,12 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddSwaggerGen();
+
+// dodavanje konteksta baze podataka - dependency injection
+
+builder.Services.AddDbContext<PcwebshopContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PcwebshopContext"));
+});
 
 var app = builder.Build();
 
