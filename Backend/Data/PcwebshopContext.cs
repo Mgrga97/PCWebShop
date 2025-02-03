@@ -15,5 +15,12 @@ namespace Backend.Data
         public DbSet<Kategorija> Kategorije { get; set; }
 
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Kategorija>().ToTable("Kategorija"); // Map entity to table named "Kategorija"
+            base.OnModelCreating(modelBuilder);
+        }
+
+
     }
 }
