@@ -1,16 +1,21 @@
-﻿use master;
-go
+﻿
+-- Zamjeniti db_a98acf_edunovawp5 s imenom svoje baze
 
-drop database if exists pcwebshop;
-go
+SELECT name, collation_name FROM sys.databases;
+GO
+ALTER DATABASE db_ab267b_pcwebshop SET SINGLE_USER WITH
+ROLLBACK IMMEDIATE;
+GO
+ALTER DATABASE db_ab267b_pcwebshop COLLATE Croatian_CI_AS;
+GO
+ALTER DATABASE db_ab267b_pcwebshop SET MULTI_USER;
+GO
+SELECT name, collation_name FROM sys.databases;
+GO
 
-create database pcwebshop collate Croatian_CI_AS;
-go
 
-use pcwebshop;
-go
 
-create table kategorija(
+create table kategorije(
 sifra int not null primary key identity(1,1),
 naziv varchar(50) not null
 );
@@ -19,7 +24,7 @@ create table proizvodi(
 sifra int not null primary key identity(1,1),
 naziv varchar(50)not null,
 cijena decimal(18,2),
-kategorija int not null references kategorija(sifra)
+kategorija int not null references kategorije(sifra)
 );
 
 create table korisnici(
@@ -30,7 +35,7 @@ email varchar(50),
 lozinka varchar(100)
 );
 
-create table listazelja(
+create table listezelja(
 sifra int not null primary key identity(1,1),
 naziv varchar(50),
 korisnik int not null references korisnici(sifra),
@@ -39,10 +44,10 @@ placanje varchar(100)
 
 create table stavke(
 proizvod int not null references proizvodi(sifra),
-lista int not null references listazelja(sifra)
+lista int not null references listezelja(sifra)
 );
 
-insert into kategorija(naziv)
+insert into kategorije(naziv)
 values 
 -- procesori dobiva sifru broj 1 u kategorijama
 ('Procesori (CPU)'),
@@ -172,7 +177,7 @@ values
 ('DeepCool LT720', 145.00, 8),
 ('Noctua NH-D12L', 75.00, 8);
 
-select * from kategorija;
+select * from kategorije;
 
 insert into korisnici(ime,prezime,email,lozinka)
 values 
@@ -202,7 +207,7 @@ values
 
 -- kreiranje liste zelja korisnika 
 
-insert into listazelja (naziv,korisnik,placanje)
+insert into listezelja (naziv,korisnik,placanje)
 values 
 ('Gaming Setup Ivana', 1, 'Gotovina'),
 ('High-End Gaming Lucije', 4, 'Kartica'),

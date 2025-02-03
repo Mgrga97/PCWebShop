@@ -17,6 +17,18 @@ builder.Services.AddDbContext<PcwebshopContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("PcwebshopContext"));
 });
 
+
+builder.Services.AddCors(o =>
+{
+
+    o.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+    
+
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,5 +48,7 @@ app.UseSwaggerUI(o =>
 });
 
 app.MapControllers();
+
+app.UseCors("CorsPolicy");
 
 app.Run();
