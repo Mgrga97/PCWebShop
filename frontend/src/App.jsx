@@ -1,30 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
+import { Container } from 'react-bootstrap'
+import NavBarEdunova from './components/NavBarEdunova'
+import { Route, Routes } from 'react-router-dom'
+import { RouteNames } from './constants'
+import Pocetna from './pages/Pocetna'
+import ProizvodiPregled from './pages/Proizvodi/ProizvodiPregled'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Pc web shop</h1>
-      <p className=''>Osijek</p>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 2)}>
-          vrijednost brojača je {count}
-        </button>
-        
-      </div>
-      
+      <Container>
+        <NavBarEdunova />
+
+
+        <Routes>
+          <Route path={RouteNames.HOME} element={<Pocetna />} />
+          <Route path={RouteNames.KATEGORIJE_PREGLED} element={<ProizvodiPregled/>} />
+        </Routes>
+
+          
+
+        <hr />
+        &copy; Pcwebshop 2025
+      </Container>
+
+
     </>
   )
 }
