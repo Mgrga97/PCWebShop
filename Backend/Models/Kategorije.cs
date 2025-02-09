@@ -1,6 +1,6 @@
 ﻿namespace Backend.Models
 {
-    public class Kategorija:Entitet
+    public class Kategorije:Entitet
     {
 
         public string Naziv { get; set; } = "";

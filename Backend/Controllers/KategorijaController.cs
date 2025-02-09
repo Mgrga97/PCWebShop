@@ -6,13 +6,13 @@ namespace Backend.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class KategorijaController : ControllerBase
+    public class KategorijeController : ControllerBase
     {
 
         private readonly PcwebshopContext _context;
 
 
-        public KategorijaController(PcwebshopContext context)
+        public KategorijeController(PcwebshopContext context)
         {
             _context = context;
         }
@@ -56,7 +56,7 @@ namespace Backend.Controllers
 
 
         [HttpPost]
-        public IActionResult Post(Kategorija kategorija)
+        public IActionResult Post(Kategorije kategorija)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace Backend.Controllers
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
-        public IActionResult Put(int sifra, Kategorija kategorija)
+        public IActionResult Put(int sifra, Kategorije kategorija)
         {
             try
             {

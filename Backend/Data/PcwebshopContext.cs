@@ -12,7 +12,7 @@ namespace Backend.Data
 
         }
 
-        public DbSet<Kategorija> Kategorije { get; set; }
+        public DbSet<Kategorije> Kategorije { get; set; }
 
 
 
