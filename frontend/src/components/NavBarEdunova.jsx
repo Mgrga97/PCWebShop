@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../constants';
+import { NavbarCollapse, NavbarToggle } from 'react-bootstrap';
 
 
 
@@ -16,7 +17,10 @@ const navigate=useNavigate()
         <>
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
-                    <Navbar.Brand href="#home">Pc Webshop</Navbar.Brand>
+                    <Navbar.Brand 
+                    className='ruka'
+                    onClick={()=>navigate(RouteNames.HOME)}
+                    >Pcwebshop</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
