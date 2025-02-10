@@ -1,11 +1,15 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import KategorijeService from "../../services/KategorijeService"
+import { Table } from "react-bootstrap";
 
 
 export default function KategorijePregled(){
 
+    const[kategorije,setKategorije] = useState();
+
     async function DohvatiKategorije(){
-        const odgovor = KategorijeService.get()
+        const odgovor = await KategorijeService.get()
+        setKategorije(odgovor)
     }
 
     //hooks (kuka) se izvodi prilikom dolaska na stranicu Kategorije
@@ -17,7 +21,23 @@ export default function KategorijePregled(){
     return(
 
         <>
-        Ovdje će se vidjeti proizvodi iz baze
+        <Table striped bordered hover responsive>
+            <thead>
+                <tr>
+                    <th>Naziv</th>
+                </tr>
+            </thead>
+            <tbody>
+                {kategorije && kategorije.map((kategorija,index)=>(
+                    <tr key={index}>
+                        <td>
+                            {kategorija.naziv}
+                        </td>
+                    </tr>
+                
+                ))}
+            </tbody>
+        </Table>
         </>
     )
 }
