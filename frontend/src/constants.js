@@ -1,7 +1,8 @@
 export const RouteNames={
     HOME:'/',
 
-    KATEGORIJE_PREGLED: '/kategorije'
+    KATEGORIJE_PREGLED: '/kategorije',
+    KATEGORIJA_NOVI: '/kategorije/dodaj'
 }
 
 

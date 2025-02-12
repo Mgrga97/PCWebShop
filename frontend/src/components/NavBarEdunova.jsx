@@ -25,12 +25,13 @@ const navigate=useNavigate()
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         
-                        <NavDropdown title="Programi" id="basic-nav-dropdown">
+                        <NavDropdown title="Izbornik" id="basic-nav-dropdown">
                         <NavDropdown.Item 
                         onClick={()=>navigate(RouteNames.KATEGORIJE_PREGLED)}
                         >Kategorije</NavDropdown.Item>
                         
                         </NavDropdown>
+                        <Nav.Link href='https://markogrgic-001-site1.ptempurl.com/swagger' target='_blank'>Swagger</Nav.Link>
                     </Nav>
                     </Navbar.Collapse>
             </Container>

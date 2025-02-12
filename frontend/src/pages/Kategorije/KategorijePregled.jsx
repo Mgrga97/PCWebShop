@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import KategorijeService from "../../services/KategorijeService"
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { RouteNames } from "../../constants";
 
 
 export default function KategorijePregled(){
@@ -21,6 +23,10 @@ export default function KategorijePregled(){
     return(
 
         <>
+        <Link
+        to={RouteNames.KATEGORIJA_NOVI}
+        className="btn btn-success siroko"
+        >Dodaj novu kategoriju</Link>
         <Table striped bordered hover responsive>
             <thead>
                 <tr>
