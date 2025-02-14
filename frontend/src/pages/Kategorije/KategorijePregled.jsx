@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 import KategorijeService from "../../services/KategorijeService"
-import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Table } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 
 
 export default function KategorijePregled(){
 
     const[kategorije,setKategorije] = useState();
+    const navigate=useNavigate();
 
     async function DohvatiKategorije(){
         const odgovor = await KategorijeService.get()
@@ -31,6 +32,7 @@ export default function KategorijePregled(){
             <thead>
                 <tr>
                     <th>Naziv</th>
+                    <th>Akcija</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +40,11 @@ export default function KategorijePregled(){
                     <tr key={index}>
                         <td>
                             {kategorija.naziv}
+                        </td>
+                        <td>
+                            <Button
+                            onClick={()=>navigate(`/Kategorije/${kategorija.sifra}`)}
+                            >Promjena</Button>
                         </td>
                     </tr>
                 

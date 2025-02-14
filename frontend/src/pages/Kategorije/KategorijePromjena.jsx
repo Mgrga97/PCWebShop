@@ -1,12 +1,24 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import KategorijeService from "../../services/KategorijeService";
+import { useEffect, useState } from "react";
 
 
-export default function KategorijeDodaj(){
+export default function KategorijePromjena(){
 
 const navigate = useNavigate();
+const [kategorija,setKategorija]=useState({});
+const routeParams = useParams();
+
+async function dohvatiKategoriju() {
+    const odgovor = await KategorijeService.getBySifra(routeParams.sifra)
+    setKategorija(odgovor)
+}
+
+useEffect(()=>{
+    dohvatiKategoriju();
+},[])
 
 
 async function Dodaj(kategorija) {
@@ -47,7 +59,8 @@ Dodaj(
         <Form on onSubmit={odradiSubmit}>
             <Form.Group controlId="Naziv">
                 <Form.Label>Naziv</Form.Label>
-                <Form.Control type="text" name="Naziv" required/>
+                <Form.Control type="text" name="Naziv" required
+                defaultValue={kategorija.Naziv}/>
             </Form.Group>
 
 

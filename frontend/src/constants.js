@@ -2,7 +2,8 @@ export const RouteNames={
     HOME:'/',
 
     KATEGORIJE_PREGLED: '/kategorije',
-    KATEGORIJA_NOVI: '/kategorije/dodaj'
+    KATEGORIJA_NOVI: '/kategorije/dodaj',
+    KATEGORIJA_PROMJENA: 'kategorije/:sifra'
 }
 
 
