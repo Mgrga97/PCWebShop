@@ -11,8 +11,8 @@ async function get(){
     .catch((e)=>{})
 }
 
-async function getBySifra(){
-    return await HttpService.get('/Kategorije' + sifra)
+async function getBySifra(sifra){
+    return await HttpService.get('/Kategorije/' + sifra)
     .then((odgovor)=>{
        // console.table(odgovor.data)
        return odgovor.data;

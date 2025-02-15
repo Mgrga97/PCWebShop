@@ -57,10 +57,10 @@ Dodaj(
 
 
         <Form on onSubmit={odradiSubmit}>
-            <Form.Group controlId="Naziv">
+            <Form.Group controlId="naziv">
                 <Form.Label>Naziv</Form.Label>
-                <Form.Control type="text" name="Naziv" required
-                defaultValue={kategorija.Naziv}/>
+                <Form.Control type="text" name="naziv" required
+                defaultValue={kategorija.naziv}/>
             </Form.Group>
 
 

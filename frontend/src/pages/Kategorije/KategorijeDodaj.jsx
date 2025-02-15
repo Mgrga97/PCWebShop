@@ -6,20 +6,16 @@ import KategorijeService from "../../services/KategorijeService";
 
 export default function KategorijeDodaj(){
 
-const navigate = useNavigate();
+
 
 
 async function Dodaj(kategorija) {
-    const odgovor = KategorijeService.dodaj(kategorija);
+    const odgovor = await KategorijeService.dodaj(kategorija);
     if(odgovor.greska){
         alert(odgovor.poruka)
         return
     }
-//mali hack, čekamo backend da osvježi
-    setTimeout(() => {
-        navigate (RouteNames.KATEGORIJE_PREGLED)
-    }, 2000);
-    
+
 }
 
 
@@ -33,7 +29,7 @@ Dodaj(
     
     {
     
-        Naziv: podaci.get('Naziv')
+        naziv: podaci.get('naziv')
     }
 
 );
@@ -45,9 +41,9 @@ Dodaj(
 
 
         <Form on onSubmit={odradiSubmit}>
-            <Form.Group controlId="Naziv">
+            <Form.Group controlId="naziv">
                 <Form.Label>Naziv</Form.Label>
-                <Form.Control type="text" name="Naziv" required/>
+                <Form.Control type="text" name="naziv" required/>
             </Form.Group>
 
 
