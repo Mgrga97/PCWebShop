@@ -6,7 +6,7 @@ import KategorijeService from "../../services/KategorijeService";
 
 export default function KategorijeDodaj(){
 
-
+    const navigate=useNavigate();
 
 
 async function Dodaj(kategorija) {
@@ -15,7 +15,7 @@ async function Dodaj(kategorija) {
         alert(odgovor.poruka)
         return
     }
-
+    navigate(RouteNames.KATEGORIJE_PREGLED)
 }
 
 

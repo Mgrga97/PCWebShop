@@ -22,15 +22,12 @@ useEffect(()=>{
 
 
 async function Dodaj(kategorija) {
-    const odgovor = KategorijeService.dodaj(kategorija);
+    const odgovor = await KategorijeService.dodaj(kategorija);
     if(odgovor.greska){
         alert(odgovor.poruka)
         return
     }
-//mali hack, čekamo backend da osvježi
-    setTimeout(() => {
-        navigate (RouteNames.KATEGORIJE_PREGLED)
-    }, 2000);
+    navigate(RouteNames.KATEGORIJE_PREGLED)
     
 }
 
