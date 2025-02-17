@@ -4,7 +4,7 @@ import { RouteNames } from "../../constants";
 import KategorijeService from "../../services/KategorijeService";
 
 
-export default function KategorijaDodaj(){
+export default function DodajKategoriju(){
 
     const navigate=useNavigate();
 

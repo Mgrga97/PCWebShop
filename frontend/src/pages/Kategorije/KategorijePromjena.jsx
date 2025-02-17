@@ -21,8 +21,8 @@ useEffect(()=>{
 },[])
 
 
-async function Dodaj(kategorija) {
-    const odgovor = await KategorijeService.dodaj(kategorija);
+async function Promjena(kategorija) {
+    const odgovor = await KategorijeService.Promjena(routeParams.sifra,kategorija);
     if(odgovor.greska){
         alert(odgovor.poruka)
         return
@@ -37,7 +37,7 @@ e.preventDefault(); // nemoj napraviti zahtjev na server po standardnom načinu
 
 let podaci = new FormData(e.target);
 
-Dodaj(
+Promjena(
     
     
     {
@@ -50,7 +50,7 @@ Dodaj(
     return(
 
         <>
-        Dodavanje kategorije
+        Promjena kategorije
 
 
         <Form on onSubmit={odradiSubmit}>
@@ -71,7 +71,7 @@ Dodaj(
             </Col>
             <Col xs={6} sm={12} md={9} lg={10} xl={6} xxl={6}>
             <Button variant="success" type="submit" className="siroko">
-                Dodaj kategoriju
+                Promjeni kategoriju
             </Button>
             </Col>
         </Row>

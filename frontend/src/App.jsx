@@ -6,8 +6,8 @@ import { Route, Routes } from 'react-router-dom'
 import { RouteNames } from './constants'
 import Pocetna from './pages/Pocetna'
 import KategorijePregled from './pages/Kategorije/KategorijePregled'
-import KategorijaDodaj from './pages/Kategorije/KategorijaDodaj'
 import KategorijePromjena from './pages/Kategorije/KategorijePromjena'
+import DodajKategoriju from './pages/Kategorije/DodajKategoriju'
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path={RouteNames.HOME} element={<Pocetna />} />
           <Route path={RouteNames.KATEGORIJE_PREGLED} element={<KategorijePregled/>} />
-          <Route path={RouteNames.KATEGORIJA_NOVI} element={<KategorijaDodaj />} />
+          <Route path={RouteNames.KATEGORIJA_NOVI} element={< DodajKategoriju />} />
           <Route path={RouteNames.KATEGORIJA_PROMJENA} element={<KategorijePromjena />}/>
         </Routes>
 
