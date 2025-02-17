@@ -30,6 +30,10 @@ const navigate=useNavigate()
                         onClick={()=>navigate(RouteNames.KATEGORIJE_PREGLED)}
                         >Kategorije</NavDropdown.Item>
                         
+                        <NavDropdown.Item 
+                        onClick={()=>navigate(RouteNames.KATEGORIJE_PREGLED)}
+                        >Korisnici</NavDropdown.Item>
+                        
                         </NavDropdown>
                         <Nav.Link href='https://markogrgic-001-site1.ptempurl.com/swagger' target='_blank'>Swagger</Nav.Link>
                     </Nav>
