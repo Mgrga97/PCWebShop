@@ -32,9 +32,16 @@ async function Promjena(sifra,Kategorije) {
     .catch(()=>{return {greska: true,poruka: 'Problem kod promjene'}})
 }
 
+async function obrisi(sifra) {
+    return HttpService.delete('/Kategorije/'+sifra)
+    .then(()=>{return {greska: false,poruka: 'Obrisano'}})
+    .catch(()=>{return {greska: true,poruka: 'Problem kod brisanja'}})
+}
+
 export default {
     get,
     getBySifra,
     dodaj,
-    Promjena
+    Promjena,
+    obrisi
 }

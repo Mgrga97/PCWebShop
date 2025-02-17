@@ -20,6 +20,23 @@ export default function KategorijePregled(){
         DohvatiKategorije();
     },[])
 
+    function obrisi(sifra){
+if(!confirm('Sigurno obrisati')){
+    return;
+    }
+brisanjeKategorije(sifra);
+
+    }
+
+    async function brisanjeKategorije(sifra) {
+        const odgovor = await KategorijeService.obrisi(sifra);
+        if(odgovor.greska){
+            alert(odgovor.poruka);
+            return;
+        }
+        DohvatiKategorije();
+    }
+
 
     return(
 
@@ -45,6 +62,12 @@ export default function KategorijePregled(){
                             <Button
                             onClick={()=>navigate(`/Kategorije/${kategorija.sifra}`)}
                             >Promjena</Button>
+                            &nbsp;&nbsp;&nbsp;
+                            <Button
+                            variant="danger"
+                            onClick={()=>obrisi(kategorija.sifra)}
+                            >Obriši</Button>
+
                         </td>
                     </tr>
                 

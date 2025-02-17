@@ -42,7 +42,7 @@ Promjena(
     
     {
     
-        Naziv: podaci.get('Naziv')
+        naziv: podaci.get('naziv')
     }
 
 );
