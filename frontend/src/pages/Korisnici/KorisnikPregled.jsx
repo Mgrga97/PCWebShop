@@ -13,12 +13,12 @@ export default function KorisnikPregled(){
 
     async function DohvatiKorisnika(){
         const odgovor = await KorisniciService.get()
-        setKategorije(odgovor)
+        setKorisnik(odgovor)
     }
 
-    //hooks (kuka) se izvodi prilikom dolaska na stranicu Kategorije
+    //hooks (kuka) se izvodi prilikom dolaska na stranicu Korisnici
     useEffect(()=>{
-        DohvatiKategorije();
+        DohvatiKorisnika();
     },[])
 
     function obrisi(sifra){
@@ -54,10 +54,10 @@ brisanjeKorisnika(sifra);
                 </tr>
             </thead>
             <tbody>
-                {korisnici && korisnici.map((korisnici,index)=>(
+                {korisnici && korisnici.map((korisnik,index)=>(
                     <tr key={index}>
                         <td>
-                            {korisnik.naziv}
+                            {korisnik.ime}
                         </td>
                         <td>
                             <Button

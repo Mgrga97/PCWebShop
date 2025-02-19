@@ -31,7 +31,7 @@ const navigate=useNavigate()
                         >Kategorije</NavDropdown.Item>
                         
                         <NavDropdown.Item 
-                        onClick={()=>navigate(RouteNames.KATEGORIJE_PREGLED)}
+                        onClick={()=>navigate(RouteNames.KORISNIK_PREGLED)}
                         >Korisnici</NavDropdown.Item>
                         
                         </NavDropdown>

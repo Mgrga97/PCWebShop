@@ -13,11 +13,11 @@ const routeParams = useParams();
 
 async function dohvatiKorisnika() {
     const odgovor = await KorisniciService.getBySifra(routeParams.sifra)
-    setKategorija(odgovor)
+    setKorisnik(odgovor)
 }
 
 useEffect(()=>{
-    dohvatiKategoriju();
+    dohvatiKorisnika();
 },[])
 
 
@@ -42,7 +42,10 @@ Promjena(
     
     {
     
-        naziv: podaci.get('naziv')
+        ime: podaci.get('ime'),
+        prezime: podaci.get('prezime'),
+        email: podaci.get('email'),
+        lozinka: podaci.get('lozinka')
     }
 
 );
@@ -60,7 +63,7 @@ Promjena(
                 defaultValue={korisnik.ime}/>
             </Form.Group>
             <Form.Group controlId="prezime">
-                <Form.Label>Prezme</Form.Label>
+                <Form.Label>Prezime</Form.Label>
                 <Form.Control type="text" name="prezime" required
                 defaultValue={korisnik.prezime}/>
             </Form.Group>
@@ -68,6 +71,11 @@ Promjena(
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="text" name="email" required
                 defaultValue={korisnik.email}/>
+            </Form.Group>
+            <Form.Group controlId="lozinka">
+                <Form.Label>Lozinka</Form.Label>
+                <Form.Control type="text" name="lozinka" required
+                defaultValue={korisnik.lozinka}/>
             </Form.Group>
 
 
@@ -81,7 +89,7 @@ Promjena(
             </Col>
             <Col xs={6} sm={12} md={9} lg={10} xl={6} xxl={6}>
             <Button variant="success" type="submit" className="siroko">
-                Promjeni kategoriju
+                Promjeni korisnika
             </Button>
             </Col>
         </Row>
