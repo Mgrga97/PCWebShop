@@ -1,7 +1,7 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
-import KategorijeService from "../../services/KategorijeService";
+import KorisniciService from "../../services/KorisniciService";
 
 
 export default function DodajKorisnika(){
@@ -10,12 +10,12 @@ export default function DodajKorisnika(){
 
 
 async function Dodaj(korisnik) {
-    const odgovor = await KategorijeService.dodaj(korisnik);
+    const odgovor = await KorisniciService.dodaj(korisnik);
     if(odgovor.greska){
         alert(odgovor.poruka)
         return
     }
-    navigate(RouteNames.KATEGORIJE_PREGLED)
+    navigate(RouteNames.KORISNIK_PREGLED)
 }
 
 
@@ -66,7 +66,7 @@ Dodaj(
             <Row>
             <Col xs={6} sm={6} md={6} lg={2} xl={6} xxl={6}>
             <Link 
-            to={RouteNames.KATEGORIJE_PREGLED}
+            to={RouteNames.KORISNIK_PREGLED}
             className="btn btn-danger siroko"
             >Odustani</Link>
             </Col>

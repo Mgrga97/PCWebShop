@@ -8,6 +8,9 @@ import Pocetna from './pages/Pocetna'
 import KategorijePregled from './pages/Kategorije/KategorijePregled'
 import KategorijePromjena from './pages/Kategorije/KategorijePromjena'
 import DodajKategoriju from './pages/Kategorije/DodajKategoriju'
+import DodajKorisnika from './pages/Korisnici/DodajKorisnika'
+import KorisnikPregled from './pages/Korisnici/KorisnikPregled'
+import KorisnikPromjena from './pages/Korisnici/KorisnikPromjena'
 
 
 function App() {
@@ -22,6 +25,13 @@ function App() {
           <Route path={RouteNames.KATEGORIJE_PREGLED} element={<KategorijePregled/>} />
           <Route path={RouteNames.KATEGORIJA_NOVI} element={< DodajKategoriju />} />
           <Route path={RouteNames.KATEGORIJA_PROMJENA} element={<KategorijePromjena />}/>
+        </Routes>
+
+        <Routes>
+          <Route path={RouteNames.HOME} element={<Pocetna />} />
+          <Route path={RouteNames.KORISNIK_PREGLED} element={<KorisnikPregledled/>} />
+          <Route path={RouteNames.KORISNIK_NOVI} element={< DodajKorisnika />} />
+          <Route path={RouteNames.KORISNIK_PROMJENA} element={<KorisnikPromjenaomjena />}/>
         </Routes>
 
           

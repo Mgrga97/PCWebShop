@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react"
-import KategorijeService from "../../services/KategorijeService"
 import { Button, Table } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
+import KorisniciService from "../../services/KorisniciService";
 
 
-export default function KategorijePregled(){
 
-    const[kategorije,setKategorije] = useState();
+export default function KorisnikPregled(){
+
+    const[korisnici,setKorisnik] = useState();
     const navigate=useNavigate();
 
-    async function DohvatiKategorije(){
-        const odgovor = await KategorijeService.get()
+    async function DohvatiKorisnika(){
+        const odgovor = await KorisniciService.get()
         setKategorije(odgovor)
     }
 
@@ -24,17 +25,17 @@ export default function KategorijePregled(){
 if(!confirm('Sigurno obrisati')){
     return;
     }
-brisanjeKategorije(sifra);
+brisanjeKorisnika(sifra);
 
     }
 
-    async function brisanjeKategorije(sifra) {
-        const odgovor = await KategorijeService.obrisi(sifra);
+    async function brisanjeKorisnika(sifra) {
+        const odgovor = await KorisniciService.obrisi(sifra);
         if(odgovor.greska){
             alert(odgovor.poruka);
             return;
         }
-        DohvatiKategorije();
+        DohvatiKorisnika();
     }
 
 
@@ -42,9 +43,9 @@ brisanjeKategorije(sifra);
 
         <>
         <Link
-        to={RouteNames.KATEGORIJA_NOVI}
+        to={RouteNames.KORISNIK_NOVI}
         className="btn btn-success siroko"
-        >Dodaj novu kategoriju</Link>
+        >Dodaj nove korisnike</Link>
         <Table striped bordered hover responsive>
             <thead>
                 <tr>
@@ -53,19 +54,19 @@ brisanjeKategorije(sifra);
                 </tr>
             </thead>
             <tbody>
-                {kategorije && kategorije.map((kategorija,index)=>(
+                {korisnici && korisnici.map((korisnici,index)=>(
                     <tr key={index}>
                         <td>
-                            {kategorija.naziv}
+                            {korisnik.naziv}
                         </td>
                         <td>
                             <Button
-                            onClick={()=>navigate(`/Kategorije/${kategorija.sifra}`)}
+                            onClick={()=>navigate(`/Korisnici/${korisnik.sifra}`)}
                             >Promjena</Button>
                             &nbsp;&nbsp;&nbsp;
                             <Button
                             variant="danger"
-                            onClick={()=>obrisi(kategorija.sifra)}
+                            onClick={()=>obrisi(korisnik.sifra)}
                             >Obriši</Button>
 
                         </td>

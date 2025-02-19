@@ -1,18 +1,18 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { RouteNames } from "../../constants";
-import KategorijeService from "../../services/KategorijeService";
 import { useEffect, useState } from "react";
+import KorisniciService from "../../services/KorisniciService";
 
 
-export default function KategorijePromjena(){
+export default function KorisnikPromjena(){
 
 const navigate = useNavigate();
-const [kategorija,setKategorija]=useState({});
+const [korisnik,setKorisnik]=useState({});
 const routeParams = useParams();
 
-async function dohvatiKategoriju() {
-    const odgovor = await KategorijeService.getBySifra(routeParams.sifra)
+async function dohvatiKorisnika() {
+    const odgovor = await KorisniciService.getBySifra(routeParams.sifra)
     setKategorija(odgovor)
 }
 
@@ -21,13 +21,13 @@ useEffect(()=>{
 },[])
 
 
-async function Promjena(kategorija) {
-    const odgovor = await KategorijeService.Promjena(routeParams.sifra,kategorija);
+async function Promjena(korisnik) {
+    const odgovor = await KorisniciService.Promjena(routeParams.sifra,korisnik);
     if(odgovor.greska){
         alert(odgovor.poruka)
         return
     }
-    navigate(RouteNames.KATEGORIJE_PREGLED)
+    navigate(RouteNames.KORISNIK_PREGLED)
     
 }
 
@@ -50,14 +50,24 @@ Promjena(
     return(
 
         <>
-        Promjena kategorije
+        Promjena korisnika
 
 
         <Form on onSubmit={odradiSubmit}>
-            <Form.Group controlId="naziv">
-                <Form.Label>Naziv</Form.Label>
-                <Form.Control type="text" name="naziv" required
-                defaultValue={kategorija.naziv}/>
+            <Form.Group controlId="ime">
+                <Form.Label>Ime</Form.Label>
+                <Form.Control type="text" name="ime" required
+                defaultValue={korisnik.ime}/>
+            </Form.Group>
+            <Form.Group controlId="prezime">
+                <Form.Label>Prezme</Form.Label>
+                <Form.Control type="text" name="prezime" required
+                defaultValue={korisnik.prezime}/>
+            </Form.Group>
+            <Form.Group controlId="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="text" name="email" required
+                defaultValue={korisnik.email}/>
             </Form.Group>
 
 

@@ -3,7 +3,13 @@ export const RouteNames={
 
     KATEGORIJE_PREGLED: '/kategorije',
     KATEGORIJA_NOVI: '/kategorije/dodaj',
-    KATEGORIJA_PROMJENA: 'kategorije/:sifra'
+    KATEGORIJA_PROMJENA: 'kategorije/:sifra',
+
+
+
+    KORISNIK_PREGLED: '/korisnici',
+    KORISNIK_NOVI: '/korisnici/dodaj',
+    KORISNIK_PROMJENA: 'korisnici/:sifra'
 }
 
 
