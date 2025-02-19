@@ -12,7 +12,7 @@ namespace Backend.Data
 
         }
 
-        public DbSet<Kategorije> Kategorije { get; set; } // Zbog ovog Kategorije se tablica zove u množini
+        public DbSet<Kategorija> Kategorije { get; set; } // Zbog ovog Kategorije se tablica zove u množini
 
         public DbSet<Korisnik> Korisnici { get; set; }
 
