@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 namespace Backend.Models
 {
@@ -11,7 +12,7 @@ namespace Backend.Models
 
         public string Placanje { get; set; } = "";
 
-        
+        public ICollection<Proizvod>? Proizvodi { get; } = [];
 
     }
 }

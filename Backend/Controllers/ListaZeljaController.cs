@@ -3,6 +3,7 @@ using Backend.Data;
 using Backend.Models;
 using Backend.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers
 {
@@ -22,7 +23,7 @@ namespace Backend.Controllers
             }
             try
             {
-                return Ok(_mapper.Map<List<ListaZeljaDTORead>>(_context.Korisnici));
+                return Ok(_mapper.Map<List<ListaZeljaDTORead>>(_context.ListeZelja.Include(lz=>lz.Korisnik)));
             }
             catch (Exception ex)
             {

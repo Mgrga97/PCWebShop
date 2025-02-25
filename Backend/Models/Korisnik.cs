@@ -2,14 +2,13 @@
 {
     public class Korisnik : Entitet
     {
-        public string ime { get; set; } = "";
+        public string Ime { get; set; } = "";
 
-        public string prezime { get; set; } = "";
+        public string Prezime { get; set; } = "";
 
-        public string? email { get; set; } 
+        public string? Email { get; set; } 
 
-        public string? lozinka { get; set; }
+        public string? Lozinka { get; set; }
 
-        public ICollection<ListaZelja>? ListeZelja { get; } = [];
     }
 }

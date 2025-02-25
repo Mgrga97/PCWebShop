@@ -67,7 +67,7 @@ values
 ('Hlađenje');
 
 
-insert into proizvodi(naziv,cijena,kategorije)
+insert into proizvodi(naziv,cijena,kategorija)
 
 -- dodajem procesore 
 

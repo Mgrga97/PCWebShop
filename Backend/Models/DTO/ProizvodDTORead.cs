@@ -5,7 +5,7 @@
         int Sifra,
         string Naziv,
         decimal? Cijena,
-        string Kategorija
+        string KategorijaNaziv
 
 
 

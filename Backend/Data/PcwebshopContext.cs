@@ -26,21 +26,19 @@ namespace Backend.Data
         {
 
             // implementacija veze 1:N Proizvod - Kategorija
-            modelBuilder.Entity<Proizvod>().HasOne(g => g.Kategorija).WithMany(g => Proizvodi);
+            modelBuilder.Entity<Proizvod>().HasOne(g => g.Kategorija);
 
             // 1:N veza ListaZelja - Korisnik
             modelBuilder.Entity<ListaZelja>()
-                .HasOne(l => l.Korisnik)
-                .WithMany(k => k.ListeZelja)
-                .HasForeignKey(l => l.Korisnik);
+                .HasOne(l => l.Korisnik);
 
             // implementacija veze n:n Proizvod - Lista zelja ( stavke )
             modelBuilder.Entity<Proizvod>()
-                .HasMany(p => p.Kategorije)
+                .HasMany(p => p.ListeZelja)
                 .WithMany(k => k.Proizvodi)
                 .UsingEntity<Dictionary<string, object>>("stavke",
-                s => s.HasOne<Kategorija>().WithMany().HasForeignKey("lista"),
-                s => s.HasOne<Proizvod>().WithMany().HasForeignKey("proizvoda"),
+                s => s.HasOne<ListaZelja>().WithMany().HasForeignKey("lista"),
+                s => s.HasOne<Proizvod>().WithMany().HasForeignKey("proizvod"),
                 s => s.ToTable("stavke")
                 );
 

@@ -17,16 +17,20 @@ namespace Backend.Mapping
             CreateMap<Korisnik, KorisnikDTORead>();
             CreateMap<KorisnikDTOInsertUpdate, Korisnik>();
 
-            CreateMap<Proizvod, KategorijaDTORead>()
-              .ForCtorParam(
-                  "ProizvodNaziv",
-                  opt => opt.MapFrom(src => src.Proizvod.Naziv)
-              );
-            CreateMap<Proizvod, KategorijaDTOInsertUpdate>().ForMember(
-                    dest => dest.ProizvodSifra,
-                    opt => opt.MapFrom(src => src.Proizvod.Sifra)
-                );
-            CreateMap<KategorijaDTOInsertUpdate, Kategorija>();
+            CreateMap<ListaZelja, ListaZeljaDTORead>()
+               .ForCtorParam(
+                   "KorisnikImePrezime",
+                   opt => opt.MapFrom(src => src.Korisnik.Ime + " " + src.Korisnik.Prezime)
+               );
+
+
+            CreateMap<Proizvod, ProizvodDTORead>()
+               .ForCtorParam(
+                   "KategorijaNaziv",
+                   opt => opt.MapFrom(src => src.Kategorija.Naziv)
+               );
+
+
 
         }
 

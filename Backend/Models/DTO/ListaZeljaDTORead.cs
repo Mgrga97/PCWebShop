@@ -4,7 +4,7 @@
         
         int Sifra,
         string Naziv,
-        int Korisnik,
+        string KorisnikImePrezime,
         string Placanje
 
 

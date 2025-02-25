@@ -11,7 +11,6 @@ namespace Backend.Models
         [ForeignKey("kategorija")]
         public required Kategorija Kategorija { get; set; }
 
-        public ICollection<Kategorija>? Kategorije { get; set; }
 
         public ICollection<ListaZelja>? ListeZelja { get; } = [];
 
