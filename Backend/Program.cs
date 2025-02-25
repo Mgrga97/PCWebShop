@@ -1,4 +1,5 @@
 using Backend.Data;
+using Backend.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,9 @@ builder.Services.AddCors(o =>
     
 
 });
+
+// automapper
+builder.Services.AddAutoMapper(typeof(PcwebshopMappingProfile));
 
 var app = builder.Build();
 

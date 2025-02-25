@@ -1,33 +1,33 @@
-﻿using Backend.Data;
+﻿using AutoMapper;
+using Backend.Data;
 using Backend.Models;
+using Backend.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using System.Numerics;
 
 namespace Backend.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class KategorijaController : ControllerBase
+    public class KategorijaController(PcwebshopContext context, IMapper mapper) : PcwebshopController(context, mapper)
     {
 
-        private readonly PcwebshopContext _context;
-
-
-        public KategorijaController(PcwebshopContext context)
-        {
-            _context = context;
-        }
-
+        
 
         [HttpGet]
-        public IActionResult Get()
+        public ActionResult<List<KategorijaDTORead>> Get()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
             try
             {
-                return Ok(_context.Kategorije);
+                return Ok(_mapper.Map<List<KategorijaDTORead>>(_context.Kategorije));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return BadRequest(e);
+                return BadRequest(new {poruka=ex.Message});
 
             }
 
@@ -36,69 +36,91 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("{sifra:int}")]
-        public IActionResult GetBySifra(int sifra)
+        public ActionResult<KategorijaDTORead> GetBySifra(int sifra)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
+            Kategorija? e;
             try
             {
-                var s = _context.Kategorije.Find(sifra);
-                if (s == null)
-                {
-                    return NotFound();
-                }
-                return Ok(s);
+                 e = _context.Kategorije.Find(sifra);
+
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
-                return BadRequest(e);
+                return BadRequest(new { poruka = ex.Message });
             }
+            if (e == null)
+            {
+                return NotFound(new { poruka = "Kategorija ne postoji u bazi" });
+            }
+
+            return Ok(_mapper.Map<KategorijaDTORead>(e));
         }
 
 
         [HttpPost]
-        public IActionResult Post(Kategorija kategorija)
+        public IActionResult Post(KategorijaDTOInsertUpdate dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
             try
             {
-                _context.Kategorije.Add(kategorija);
+                var e = _mapper.Map<Kategorija>(dto);
+                _context.Kategorije.Add(e);
                 _context.SaveChanges();
-                return StatusCode(StatusCodes.Status201Created, kategorija);
+                return StatusCode(StatusCodes.Status201Created, _mapper.Map<KategorijaDTORead>(e));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
-                return BadRequest(e);
+                return BadRequest(new { poruka = ex.Message });
             }
         }
 
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
-        public IActionResult Put(int sifra, Kategorija kategorija)
+        public IActionResult Put(int sifra, KategorijaDTOInsertUpdate dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
             try
             {
-                var s = _context.Kategorije.Find(sifra);
-
-                if (s == null)
+                Kategorija? e;
+                try
                 {
-                    return NotFound();
+                    e = _context.Kategorije.Find(sifra);
                 }
+                catch (Exception ex)
+                {
 
-                // Ručno mapiranje kasnije ide automapper
-                s.Naziv = kategorija.Naziv;
-                
+                    return BadRequest(new { poruka = ex.Message });
+                }
+                if (e == null)
+                {
+                    return NotFound(new { poruka = "Kategorija ne postoji u bazi" });
+                }
+                e = _mapper.Map(dto, e);
 
-
-                _context.Kategorije.Update(s);
+                _context.Kategorije.Update(e);
                 _context.SaveChanges();
+
+                
                 return Ok(new { poruka = "Uspješno promjenjeno" });
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
-                return BadRequest(e);
+                return BadRequest(new { poruka = ex.Message });
             }
         }
 
@@ -107,21 +129,35 @@ namespace Backend.Controllers
 
         public IActionResult Delete(int sifra)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
             try
             {
-                var s = _context.Kategorije.Find(sifra);
-                if (s == null)
+                Kategorija? e;
+                try
                 {
-                    return NotFound();
+                    e = _context.Kategorije.Find(sifra);
                 }
-                _context.Kategorije.Remove(s);
+                catch (Exception ex)
+                {
+
+                    return BadRequest(new { poruka = ex.Message });
+                }
+                
+                if (e == null)
+                {
+                    return NotFound("Kategorija ne postoji u bazi");
+                }
+                _context.Kategorije.Remove(e);
                 _context.SaveChanges();
                 return Ok(new { poruka = "Uspješno obrisano" });
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
-                return BadRequest(e);
+                return BadRequest(new { poruka = ex.Message });
             }
         }
 

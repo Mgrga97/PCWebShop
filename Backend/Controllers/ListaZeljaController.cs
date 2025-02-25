@@ -8,13 +8,13 @@ namespace Backend.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class KorisnikController(PcwebshopContext context, IMapper mapper):PcwebshopController(context,mapper)
+    public class ListaZeljaController(PcwebshopContext context, IMapper mapper) : PcwebshopController(context, mapper)
     {
-       
+
         // RUTE
 
         [HttpGet]
-        public ActionResult<List<KorisnikDTORead>> Get()
+        public ActionResult<List<ListaZeljaDTORead>> Get()
         {
             if (!ModelState.IsValid)
             {
@@ -22,7 +22,7 @@ namespace Backend.Controllers
             }
             try
             {
-                return Ok(_mapper.Map<List<KorisnikDTORead>>(_context.Korisnici));
+                return Ok(_mapper.Map<List<ListaZeljaDTORead>>(_context.Korisnici));
             }
             catch (Exception ex)
             {
@@ -34,17 +34,17 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("{sifra:int}")]
-        public ActionResult<KorisnikDTORead> GetBySifra(int sifra)
+        public ActionResult<ListaZeljaDTORead> GetBySifra(int sifra)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { poruka = ModelState });
             }
-            Korisnik? e;
+            ListaZelja? e;
             try
             {
-                e = _context.Korisnici.Find(sifra);
-                
+                e = _context.ListeZelja.Find(sifra);
+
             }
             catch (Exception ex)
             {
@@ -53,13 +53,13 @@ namespace Backend.Controllers
             }
             if (e == null)
             {
-                return NotFound(new { poruka = "Korisnik ne postoji u bazi" });
+                return NotFound(new { poruka = "Lista želja ne postoji u bazi" });
             }
-            return Ok(_mapper.Map<KorisnikDTORead>(e));
+            return Ok(_mapper.Map<ListaZeljaDTORead>(e));
         }
 
         [HttpPost]
-        public IActionResult Post(KorisnikDTOInsertUpdate dto)
+        public IActionResult Post(ListaZeljaDTOInsertUpdate dto)
         {
             if (!ModelState.IsValid)
             {
@@ -67,10 +67,10 @@ namespace Backend.Controllers
             }
             try
             {
-                var e = _mapper.Map<Korisnik>(dto);
-                _context.Korisnici.Add(e);
+                var e = _mapper.Map<ListaZelja>(dto);
+                _context.ListeZelja.Add(e);
                 _context.SaveChanges();
-                return StatusCode(StatusCodes.Status201Created, _mapper.Map<KorisnikDTORead>(e));
+                return StatusCode(StatusCodes.Status201Created, _mapper.Map<ListaZeljaDTORead>(e));
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace Backend.Controllers
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
-        public IActionResult Put(int sifra, KorisnikDTOInsertUpdate dto)
+        public IActionResult Put(int sifra, ListaZeljaDTOInsertUpdate dto)
         {
             if (!ModelState.IsValid)
             {
@@ -90,26 +90,26 @@ namespace Backend.Controllers
             }
             try
             {
-                Korisnik? e;
+                ListaZelja? e;
                 try
                 {
-                    e = _context.Korisnici.Find(sifra);
+                    e = _context.ListeZelja.Find(sifra);
                 }
                 catch (Exception ex)
                 {
                     return BadRequest(new { poruka = ex.Message });
                 }
-                
+
 
                 if (e == null)
                 {
-                    return NotFound(new { poruka = "Korisnik ne postoji u bazi" });
+                    return NotFound(new { poruka = "Lista želja ne postoji u bazi" });
                 }
 
                 e = _mapper.Map(dto, e);
 
 
-                _context.Korisnici.Update(e);
+                _context.ListeZelja.Update(e);
                 _context.SaveChanges();
                 return Ok(new { poruka = "Uspješno promjenjeno" });
 
@@ -132,22 +132,22 @@ namespace Backend.Controllers
             }
             try
             {
-                Korisnik? e;
+                ListaZelja? e;
                 try
                 {
-                    e = _context.Korisnici.Find(sifra);
+                    e = _context.ListeZelja.Find(sifra);
                 }
                 catch (Exception ex)
                 {
 
                     return BadRequest(new { poruka = ex.Message });
                 }
-                
+
                 if (e == null)
                 {
-                    return NotFound("Korisnik ne postoji u bazi");
+                    return NotFound("Lista želja ne postoji u bazi");
                 }
-                _context.Korisnici.Remove(e);
+                _context.ListeZelja.Remove(e);
                 _context.SaveChanges();
                 return Ok(new { poruka = "Uspješno obrisano" });
             }
@@ -156,7 +156,7 @@ namespace Backend.Controllers
 
                 return BadRequest(new { poruka = ex.Message });
             }
-        }
 
+        }
     }
 }

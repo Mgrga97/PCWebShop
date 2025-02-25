@@ -8,6 +8,8 @@
 
         public string? email { get; set; } 
 
-        public string? lozinka { get; set; } 
+        public string? lozinka { get; set; }
+
+        public ICollection<ListaZelja>? ListeZelja { get; } = [];
     }
 }
