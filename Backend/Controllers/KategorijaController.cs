@@ -36,7 +36,7 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("{sifra:int}")]
-        public ActionResult<KategorijaDTORead> GetBySifra(int sifra)
+        public ActionResult<KategorijaDTOInsertUpdate> GetBySifra(int sifra)
         {
             if (!ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace Backend.Controllers
                 return NotFound(new { poruka = "Kategorija ne postoji u bazi" });
             }
 
-            return Ok(_mapper.Map<KategorijaDTORead>(e));
+            return Ok(_mapper.Map<KategorijaDTOInsertUpdate>(e));
         }
 
 

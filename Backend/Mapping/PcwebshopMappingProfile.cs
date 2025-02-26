@@ -13,6 +13,7 @@ namespace Backend.Mapping
             // kreiramo mapiranja: izvor, odredište
             CreateMap<Kategorija, KategorijaDTORead>();
             CreateMap<KategorijaDTOInsertUpdate, Kategorija>();
+            CreateMap<Kategorija, KategorijaDTOInsertUpdate>();
 
             CreateMap<Korisnik, KorisnikDTORead>();
             CreateMap<KorisnikDTOInsertUpdate, Korisnik>();
