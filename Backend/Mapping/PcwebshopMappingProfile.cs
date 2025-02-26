@@ -30,11 +30,7 @@ namespace Backend.Mapping
                    opt => opt.MapFrom(src => src.Kategorija.Naziv)
                );
 
-            CreateMap<Proizvod, ProizvodDTORead>()
-              .ForCtorParam(
-                  "KategorijaSifra",
-                  opt => opt.MapFrom(src => src.Kategorija.Sifra)
-              );
+            CreateMap<ProizvodDTOInsertUpdate, Proizvod>();
 
 
 

@@ -123,18 +123,18 @@ namespace Backend.Controllers
                 }
                 if (es == null)
                 {
-                    return NotFound(new { poruka = "Proizvod u kategoriji ne postoji u bazi" });
+                    return NotFound(new { poruka = "Kategorija ne postoji u bazi" });
                 }
 
                 // pronadi kategoriju
 
 
-                e = _mapper.Map<Proizvod>(dto);
+                e = _mapper.Map(dto, e);
                 e.Kategorija = es; // pronadena kategorija
 
                 _context.Proizvodi.Update(e);
                 _context.SaveChanges();
-                return StatusCode(StatusCodes.Status201Created, _mapper.Map<ProizvodDTORead>(e));
+                return Ok(new { poruka = "Uspješno promjenjeno" });
 
             }
             catch (Exception ex)
