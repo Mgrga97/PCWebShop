@@ -112,8 +112,11 @@ namespace Backend.Controllers
                     return NotFound(new { poruka = "Proizvod ne postoji u bazi" });
                 }
 
-                e = _mapper.Map(dto, e);
+                // pronadi kategoriju
 
+
+                e = _mapper.Map(dto, e);
+                //e.Kategorija = // pronadena kategorija
 
                 _context.Proizvodi.Update(e);
                 _context.SaveChanges();

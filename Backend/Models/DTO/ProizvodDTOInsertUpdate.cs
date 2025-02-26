@@ -8,7 +8,7 @@ namespace Backend.Models.DTO
         string Naziv,
         [Range(0, 10000, ErrorMessage = "Vrijednost {0} mora biti između {1} i {2}")]
         decimal? Cijena,
-        string Kategorija
+        int Kategorija
 
     );
 }
