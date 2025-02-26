@@ -112,15 +112,29 @@ namespace Backend.Controllers
                     return NotFound(new { poruka = "Proizvod ne postoji u bazi" });
                 }
 
+                Kategorija? es;
+                try
+                {
+                    es = _context.Kategorije.Find(dto.KategorijaSifra);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(new { poruka = ex.Message });
+                }
+                if (es == null)
+                {
+                    return NotFound(new { poruka = "Proizvod u kategoriji ne postoji u bazi" });
+                }
+
                 // pronadi kategoriju
 
 
-                e = _mapper.Map(dto, e);
-                //e.Kategorija = // pronadena kategorija
+                e = _mapper.Map<Proizvod>(dto);
+                e.Kategorija = es; // pronadena kategorija
 
                 _context.Proizvodi.Update(e);
                 _context.SaveChanges();
-                return Ok(new { poruka = "Uspješno promjenjeno" });
+                return StatusCode(StatusCodes.Status201Created, _mapper.Map<ProizvodDTORead>(e));
 
             }
             catch (Exception ex)
