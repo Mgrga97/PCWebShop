@@ -4,7 +4,6 @@ using Backend.Models;
 using Backend.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Text.RegularExpressions;
 
 namespace Backend.Controllers
 {
@@ -66,28 +65,13 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        [Route("{sifra:int}")]
-        public IActionResult Post(int sifra, ProizvodDTOInsertUpdate dto)
+        public IActionResult Post(ProizvodDTOInsertUpdate dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { poruka = ModelState });
             }
 
-
-            Proizvod? e;
-            try
-            {
-                e = _context.Proizvodi.Include(g => g.Kategorija).FirstOrDefault(x => x.Sifra == sifra);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { poruka = ex.Message });
-            }
-            if (e == null)
-            {
-                return NotFound(new { poruka = "Proizvod ne postoji u bazi" });
-            }
 
             Kategorija? es;
             try
@@ -104,11 +88,12 @@ namespace Backend.Controllers
             }
 
 
+
             try
             {
-                e = _mapper.Map(dto, e);
+                var e = _mapper.Map<Proizvod>(dto);
                 e.Kategorija = es;
-                _context.Proizvodi.Update(e);
+                _context.Proizvodi.Add(e);
                 _context.SaveChanges();
                 return StatusCode(StatusCodes.Status201Created, _mapper.Map<ProizvodDTORead>(e));
             }
