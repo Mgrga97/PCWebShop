@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import KategorijeService from "../../services/KategorijeService"
 import { Button, Table } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
+import ProizvodiService from "../../services/ProizvodiService";
 
 
 export default function ProizvodiPregled(){
@@ -11,7 +11,7 @@ export default function ProizvodiPregled(){
     const navigate=useNavigate();
 
     async function DohvatiProizvod(){
-        const odgovor = await KategorijeService.get()
+        const odgovor = await ProizvodiService.get()
         setProizvod(odgovor)
     }
 
