@@ -32,6 +32,7 @@ namespace Backend.Mapping
                );
 
             CreateMap<ProizvodDTOInsertUpdate, Proizvod>();
+            CreateMap<Proizvod, ProizvodDTOInsertUpdate>();
 
 
 
