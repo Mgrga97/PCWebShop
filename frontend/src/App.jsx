@@ -29,9 +29,23 @@ function App() {
 
         <Routes>
           <Route path={RouteNames.HOME} element={<Pocetna />} />
-          <Route path={RouteNames.KORISNIK_PREGLED} element={<KorisnikPregledled/>} />
+          <Route path={RouteNames.KORISNIK_PREGLED} element={<KorisnikPregled/>} />
           <Route path={RouteNames.KORISNIK_NOVI} element={< DodajKorisnika />} />
-          <Route path={RouteNames.KORISNIK_PROMJENA} element={<KorisnikPromjenaomjena />}/>
+          <Route path={RouteNames.KORISNIK_PROMJENA} element={<KorisnikPromjena />}/>
+        </Routes>
+
+        <Routes>
+          <Route path={RouteNames.HOME} element={<Pocetna />} />
+          <Route path={RouteNames.PROIZVOD_PREGLED} element={<ProizvodPregled/>} />
+          <Route path={RouteNames.PROIZVOD_NOVI} element={< DodajProizvod />} />
+          <Route path={RouteNames.PROIZVOD_PROMJENA} element={<ProizvodPromjena />}/>
+        </Routes>
+
+        <Routes>
+          <Route path={RouteNames.HOME} element={<Pocetna />} />
+          <Route path={RouteNames.LISTAZELJA_PREGLED} element={<ListaZeljaPregled/>} />
+          <Route path={RouteNames.LISTAZELJA_NOVI} element={< DodajListuZelja />} />
+          <Route path={RouteNames.LISTAZELJA_PROMJENA} element={<ListaZeljaPromjena />}/>
         </Routes>
 
           
