@@ -18,11 +18,7 @@ namespace Backend.Mapping
             CreateMap<Korisnik, KorisnikDTORead>();
             CreateMap<KorisnikDTOInsertUpdate, Korisnik>();
 
-            CreateMap<ListaZelja, ListaZeljaDTORead>()
-               .ForCtorParam(
-                   "KorisnikImePrezime",
-                   opt => opt.MapFrom(src => src.Korisnik.Ime + " " + src.Korisnik.Prezime)
-               );
+           
 
 
             CreateMap<Proizvod, ProizvodDTORead>()
@@ -34,7 +30,15 @@ namespace Backend.Mapping
             CreateMap<ProizvodDTOInsertUpdate, Proizvod>();
             CreateMap<Proizvod, ProizvodDTOInsertUpdate>();
 
+            CreateMap<ListaZelja, ListaZeljaDTORead>();
+            CreateMap<ListaZeljaDTOInsertUpdate, ListaZelja>();
 
+            CreateMap<ListaZelja, ListaZeljaDTORead>()
+              .ForCtorParam(
+                  "KorisnikImePrezime",
+                  opt => opt.MapFrom(src => src.Korisnik.Ime + " " + src.Korisnik.Prezime)
+              );
+            CreateMap<ListaZelja, ListaZeljaDTOInsertUpdate>();
 
         }
 

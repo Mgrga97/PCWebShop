@@ -44,7 +44,7 @@ namespace Backend.Controllers
             ListaZelja? e;
             try
             {
-                e = _context.ListeZelja.Find(sifra);
+                e = _context.ListeZelja.Include(lz => lz.Korisnik).FirstOrDefault(lz=>lz.Sifra == sifra);
 
             }
             catch (Exception ex)
@@ -109,6 +109,24 @@ namespace Backend.Controllers
 
                 e = _mapper.Map(dto, e);
 
+                Korisnik? es;
+                try
+                {
+                    es = _context.Korisnici.Find(dto.Korisnik);
+
+                }
+                catch (Exception ex)
+                {
+
+                    return BadRequest(new { poruka = ex.Message });
+                }
+                if (e == null)
+                {
+                    return NotFound(new { poruka = "Korisnik ne postoji u bazi" });
+                }
+
+                e = _mapper.Map(dto, e);
+                e.Korisnik = es; //
 
                 _context.ListeZelja.Update(e);
                 _context.SaveChanges();
