@@ -7,7 +7,7 @@ namespace Backend.Models.DTO
         
         string Naziv,
         [Required(ErrorMessage = "Korisnik obavezno")]
-        int Korisnik,
+        int KorisnikSifra,
         string Placanje
 
 

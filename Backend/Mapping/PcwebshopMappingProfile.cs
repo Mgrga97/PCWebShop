@@ -30,7 +30,7 @@ namespace Backend.Mapping
             CreateMap<ProizvodDTOInsertUpdate, Proizvod>();
             CreateMap<Proizvod, ProizvodDTOInsertUpdate>();
 
-            CreateMap<ListaZelja, ListaZeljaDTORead>();
+
             CreateMap<ListaZeljaDTOInsertUpdate, ListaZelja>();
 
             CreateMap<ListaZelja, ListaZeljaDTORead>()

@@ -107,12 +107,11 @@ namespace Backend.Controllers
                     return NotFound(new { poruka = "Lista želja ne postoji u bazi" });
                 }
 
-                e = _mapper.Map(dto, e);
 
                 Korisnik? es;
                 try
                 {
-                    es = _context.Korisnici.Find(dto.Korisnik);
+                    es = _context.Korisnici.Find(dto.KorisnikSifra);
 
                 }
                 catch (Exception ex)
@@ -120,7 +119,7 @@ namespace Backend.Controllers
 
                     return BadRequest(new { poruka = ex.Message });
                 }
-                if (e == null)
+                if (es == null)
                 {
                     return NotFound(new { poruka = "Korisnik ne postoji u bazi" });
                 }
