@@ -66,9 +66,25 @@ namespace Backend.Controllers
             {
                 return BadRequest(new { poruka = ModelState });
             }
+
+            Korisnik? es;
+            try
+            {
+                es = _context.Korisnici.Find(dto.KorisnikSifra);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+            if (es == null)
+            {
+                return NotFound(new { poruka = "Korisnik ne postoji u bazi" });
+            }
+
             try
             {
                 var e = _mapper.Map<ListaZelja>(dto);
+                e.Korisnik = es;
                 _context.ListeZelja.Add(e);
                 _context.SaveChanges();
                 return StatusCode(StatusCodes.Status201Created, _mapper.Map<ListaZeljaDTORead>(e));

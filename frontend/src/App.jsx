@@ -11,6 +11,9 @@ import DodajKategoriju from './pages/Kategorije/DodajKategoriju'
 import DodajKorisnika from './pages/Korisnici/DodajKorisnika'
 import KorisnikPregled from './pages/Korisnici/KorisnikPregled'
 import KorisnikPromjena from './pages/Korisnici/KorisnikPromjena'
+import DodajProizvod from './pages/Proizvodi/DodajProizvod'
+import ProizvodiPregled from './pages/Proizvodi/ProizvodiPregled'
+import ProizvodiPromjena from './pages/Proizvodi/ProizvodiPromjena'
 
 
 function App() {
@@ -25,27 +28,15 @@ function App() {
           <Route path={RouteNames.KATEGORIJE_PREGLED} element={<KategorijePregled/>} />
           <Route path={RouteNames.KATEGORIJA_NOVI} element={< DodajKategoriju />} />
           <Route path={RouteNames.KATEGORIJA_PROMJENA} element={<KategorijePromjena />}/>
-        </Routes>
 
-        <Routes>
-          <Route path={RouteNames.HOME} element={<Pocetna />} />
           <Route path={RouteNames.KORISNIK_PREGLED} element={<KorisnikPregled/>} />
           <Route path={RouteNames.KORISNIK_NOVI} element={< DodajKorisnika />} />
           <Route path={RouteNames.KORISNIK_PROMJENA} element={<KorisnikPromjena />}/>
-        </Routes>
-
-        <Routes>
-          <Route path={RouteNames.HOME} element={<Pocetna />} />
-          <Route path={RouteNames.PROIZVOD_PREGLED} element={<ProizvodPregled/>} />
-          <Route path={RouteNames.PROIZVOD_NOVI} element={< DodajProizvod />} />
-          <Route path={RouteNames.PROIZVOD_PROMJENA} element={<ProizvodPromjena />}/>
-        </Routes>
-
-        <Routes>
-          <Route path={RouteNames.HOME} element={<Pocetna />} />
-          <Route path={RouteNames.LISTAZELJA_PREGLED} element={<ListaZeljaPregled/>} />
-          <Route path={RouteNames.LISTAZELJA_NOVI} element={< DodajListuZelja />} />
-          <Route path={RouteNames.LISTAZELJA_PROMJENA} element={<ListaZeljaPromjena />}/>
+       
+          <Route path={RouteNames.PROIZVOD_PREGLED} element={<ProizvodiPregled />} />
+          <Route path={RouteNames.PROIZVOD_NOVI} element={<DodajProizvod />} />
+          <Route path={RouteNames.PROIZVOD_PROMJENA} element={<ProizvodiPromjena />}/>
+       
         </Routes>
 
           

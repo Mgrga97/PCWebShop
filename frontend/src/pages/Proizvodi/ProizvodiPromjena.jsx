@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import ProizvodiService from "../../services/ProizvodiService";
 
 
-export default function ProizvodPromjena(){
+export default function ProizvodiPromjena(){
 
 const navigate = useNavigate();
 const [proizvod,setProizvod]=useState({});

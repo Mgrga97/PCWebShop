@@ -7,7 +7,7 @@ import { RouteNames } from "../../constants";
 
 export default function KategorijePregled(){
 
-    const[kategorije,setKategorije] = useState();
+    const[kategorije,setKategorije] = useState([]);
     const navigate=useNavigate();
 
     async function DohvatiKategorije(){
