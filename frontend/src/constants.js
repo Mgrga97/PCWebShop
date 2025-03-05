@@ -11,10 +11,10 @@ export const RouteNames={
     KORISNIK_NOVI: '/korisnici/dodaj',
     KORISNIK_PROMJENA: 'korisnici/:sifra',
 
-    PROIZVOD_PREGLED: '/proizvodi',
-    PROIZVOD_NOVI: '/proizvodi/dodaj',
-    PROIZVOD_PROMJENA: 'proizvodi/:sifra'
+    PROIZVODI_PREGLED: '/proizvod',
+    PROIZVOD_NOVI: '/proizvod/dodaj',
+    PROIZVODI_PROMJENA: 'proizvod/:sifra'
 }
 
 
-export const BACKEND_URL='https://localhost:7013/api/v1';
+export const BACKEND_URL='markogrgic-001-site1.ptempurl.com/api/v1';
