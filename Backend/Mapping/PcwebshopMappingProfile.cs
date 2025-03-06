@@ -6,8 +6,14 @@ using System.Text.RegularExpressions;
 
 namespace Backend.Mapping
 {
+    /// <summary>
+    /// Klasa koja predstavlja mapiranje između entiteta i DTO objekata.
+    /// </summary>
     public class PcwebshopMappingProfile:Profile
     {
+        /// <summary>
+        /// Konstruktor u kojem se definiraju mapiranja.
+        /// </summary>
         public PcwebshopMappingProfile()
         {
             // kreiramo mapiranja: izvor, odredište

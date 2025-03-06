@@ -2,6 +2,12 @@
 
 namespace Backend.Models.DTO
 {
+    /// <summary>
+    /// DTO za unos i izmjenu proizvoda.
+    /// </summary>
+    /// <param name="Naziv">Naziv proizvoda. Obavezno polje.</param>
+    /// <param name="KategorijaSifra">Šifra kategorije kojoj proizvod pripada.</param>
+    /// <param name="Cijena">Cijena proizvoda.</param>
     public record ProizvodDTOInsertUpdate(
     
         [Required(ErrorMessage = "Naziv obavezno")]

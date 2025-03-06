@@ -6,13 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
+    /// <summary>
+    /// Kontroler za rad sa korisnicima
+    /// </summary>
+    /// <param name="context">Instanca PcwebshopContext klase koja se koristi za pristup bazi podataka</param>
+    /// <param name="mapper">Instanca IMapper sučelja koja se koristi za mapiranje objekta</param>
     [ApiController]
     [Route("api/v1/[controller]")]
     public class KorisnikController(PcwebshopContext context, IMapper mapper):PcwebshopController(context,mapper)
     {
-       
-        // RUTE
 
+        // RUTE
+        /// <summary>
+        /// Metoda za dohvat svih korisnika.
+        /// </summary>
+        /// <returns>Listu DTO objekata korisnika.</returns>
         [HttpGet]
         public ActionResult<List<KorisnikDTORead>> Get()
         {
@@ -31,7 +39,11 @@ namespace Backend.Controllers
             }
 
         }
-
+        /// <summary>
+        /// Metoda za dohvat korisnika po šifri.
+        /// </summary>
+        /// <param name="sifra">Šifra korisnika.</param>
+        /// <returns>DTO objekt korisnika.</returns>
         [HttpGet]
         [Route("{sifra:int}")]
         public ActionResult<KorisnikDTORead> GetBySifra(int sifra)
@@ -57,7 +69,11 @@ namespace Backend.Controllers
             }
             return Ok(_mapper.Map<KorisnikDTORead>(e));
         }
-
+        /// <summary>
+        /// Dodaje novog korisnika.
+        /// </summary>
+        /// <param name="dto">DTO objekt korisnik koji se stvara ili ažurira.</param>
+        /// <returns>Status kreiranja i DTO objekt novog korisnika.</returns>
         [HttpPost]
         public IActionResult Post(KorisnikDTOInsertUpdate dto)
         {
@@ -78,7 +94,12 @@ namespace Backend.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Metoda za promjenu korisnika.
+        /// </summary>
+        /// <param name="sifra">Šifra korisnika.</param>
+        /// <param name="dto">DTO objekt za unos ili ažuriranje korisnika.</param>
+        /// <returns>Status ažuriranja.</returns>
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
@@ -120,7 +141,11 @@ namespace Backend.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Briše korisnika po šifri.
+        /// </summary>
+        /// <param name="sifra">Šifra korisnika.</param>
+        /// <returns>Status brisanja.</returns>
         [HttpDelete]
         [Route("{sifra:int}")]
 

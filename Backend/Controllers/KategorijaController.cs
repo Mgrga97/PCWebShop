@@ -7,12 +7,20 @@ using System.Numerics;
 
 namespace Backend.Controllers
 {
+    /// <summary>
+    /// Kontroler za rad sa kategorijama.
+    /// </summary>
+    /// <param name="context">kontekst baze podataka.</param>
+    /// <param name="mapper">mapper za mapiranje objekta.</param>
     [ApiController]
     [Route("api/v1/[controller]")]
     public class KategorijaController(PcwebshopContext context, IMapper mapper) : PcwebshopController(context, mapper)
     {
 
-        
+        /// <summary>
+        /// Metoda za dohvat svih kategorija
+        /// </summary>
+        /// <returns>Daje listu kategorija.</returns>
 
         [HttpGet]
         public ActionResult<List<KategorijaDTORead>> Get()
@@ -33,7 +41,11 @@ namespace Backend.Controllers
 
 
         }
-
+        /// <summary>
+        /// Metoda za dohvat kategorije po šifri.
+        /// </summary>
+        /// <param name="sifra">Šifra kategorije.</param>
+        /// <returns>Kategorija.</returns>
         [HttpGet]
         [Route("{sifra:int}")]
         public ActionResult<KategorijaDTOInsertUpdate> GetBySifra(int sifra)
@@ -61,7 +73,11 @@ namespace Backend.Controllers
             return Ok(_mapper.Map<KategorijaDTOInsertUpdate>(e));
         }
 
-
+        /// <summary>
+        /// Metoda za dodavanje kategorije.
+        /// </summary>
+        /// <param name="dto">Podaci o kategoriji.</param>
+        /// <returns> Status kreiranja.</returns>
         [HttpPost]
         public IActionResult Post(KategorijaDTOInsertUpdate dto)
         {
@@ -82,7 +98,12 @@ namespace Backend.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Metoda za promjenu kategorije
+        /// </summary>
+        /// <param name="sifra">Šifra kategorije.</param>
+        /// <param name="dto">Naziv kategorije.</param>
+        /// <returns>Status promjene podataka.</returns>
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
@@ -123,7 +144,11 @@ namespace Backend.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Metoda za brisanje kategorije.
+        /// </summary>
+        /// <param name="sifra">Šifra kategorije.</param>
+        /// <returns>Status brisanja.</returns>
         [HttpDelete]
         [Route("{sifra:int}")]
 

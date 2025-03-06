@@ -7,7 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers
 {
-
+    /// <summary>
+    /// Kontroler za rad sa proizvodima. 
+    /// </summary>
+    /// <param name="context">Instanca PcwebshopContext klase koja se koristi za pristup bazi podataka.</param>
+    /// <param name="mapper">Instanca IMapper sučelja koja se koristi za mapiranje objekta.</param>
     [ApiController]
     [Route("api/v1/[controller]")]
     public class ProizvodController(PcwebshopContext context, IMapper mapper) : PcwebshopController(context, mapper)
@@ -18,7 +22,10 @@ namespace Backend.Controllers
 
 
         // RUTE
-
+        /// <summary>
+        /// Metoda za dohvat svih proizvoda.
+        /// </summary>
+        /// <returns>Lista DTO objekata proizvoda.</returns>
         [HttpGet]
         public ActionResult<List<ProizvodDTORead>> Get()
         {
@@ -37,7 +44,11 @@ namespace Backend.Controllers
             }
 
         }
-
+        /// <summary>
+        /// Dohvaća proizvod po šifri.
+        /// </summary>
+        /// <param name="sifra">Šifra proizvoda.</param>
+        /// <returns>DTO objekt proizvoda.</returns>
         [HttpGet]
         [Route("{sifra:int}")]
         public ActionResult<ProizvodDTORead> GetBySifra(int sifra)
@@ -63,7 +74,11 @@ namespace Backend.Controllers
             }
             return Ok(_mapper.Map<ProizvodDTORead>(e));
         }
-
+        /// <summary>
+        /// Dodaje novi proizvod.
+        /// </summary>
+        /// <param name="dto">DTO objekt za unos ili ažuriranje novog proizvoda.</param>
+        /// <returns>Status kreiranja i DTO objekt novog proizvoda.</returns>
         [HttpPost]
         public IActionResult Post(ProizvodDTOInsertUpdate dto)
         {
@@ -103,7 +118,12 @@ namespace Backend.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Metoda za promjenu proizvoda.
+        /// </summary>
+        /// <param name="sifra">Šifra proizvoda.</param>
+        /// <param name="dto">DTO objekt za unos ili ažuriranje proizvoda</param>
+        /// <returns>Status ažuriranja.</returns>
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
@@ -162,7 +182,11 @@ namespace Backend.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Briše proizvod po šifri.
+        /// </summary>
+        /// <param name="sifra">Šifra proizvoda</param>
+        /// <returns>Status brisanja.</returns>
         [HttpDelete]
         [Route("{sifra:int}")]
 

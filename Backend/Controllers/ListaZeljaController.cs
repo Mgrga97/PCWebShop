@@ -13,7 +13,10 @@ namespace Backend.Controllers
     {
 
         // RUTE
-
+        /// <summary>
+        /// Metoda za dohvat svih lista želja.
+        /// </summary>
+        /// <returns>Listu DTO objekata liste želja.</returns>
         [HttpGet]
         public ActionResult<List<ListaZeljaDTORead>> Get()
         {
@@ -32,7 +35,11 @@ namespace Backend.Controllers
             }
 
         }
-
+        /// <summary>
+        /// Dohvaća listu želja po šifri.
+        /// </summary>
+        /// <param name="sifra">Šifra liste želja.</param>
+        /// <returns>DTO objekt liste želja.</returns>
         [HttpGet]
         [Route("{sifra:int}")]
         public ActionResult<ListaZeljaDTORead> GetBySifra(int sifra)
@@ -58,7 +65,11 @@ namespace Backend.Controllers
             }
             return Ok(_mapper.Map<ListaZeljaDTORead>(e));
         }
-
+        /// <summary>
+        /// Dodaje novu listu želja.
+        /// </summary>
+        /// <param name="dto">DTO objekt za unos ili ažuriranje liste želja.</param>
+        /// <returns>Status kreiranja i DTO objekt nove liste želja.</returns>
         [HttpPost]
         public IActionResult Post(ListaZeljaDTOInsertUpdate dto)
         {
@@ -95,7 +106,12 @@ namespace Backend.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Ažurira postojeću listu želja po šifri.
+        /// </summary>
+        /// <param name="sifra">Šifra liste želja.</param>
+        /// <param name="dto">DTO objekt za unos ili ažuriranje liste želja.</param>
+        /// <returns>Status ažuriranja.</returns>
         [HttpPut]
         [Route("{sifra:int}")]
         [Produces("application/json")]
@@ -154,7 +170,11 @@ namespace Backend.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Briše listu želja po šifri.
+        /// </summary>
+        /// <param name="sifra">Šifra liste želja.</param>
+        /// <returns>Status brisanja.</returns>
         [HttpDelete]
         [Route("{sifra:int}")]
 
