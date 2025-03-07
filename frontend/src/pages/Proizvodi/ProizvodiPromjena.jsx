@@ -42,7 +42,9 @@ Promjena(
     
     {
     
-        naziv: podaci.get('naziv')
+        naziv: podaci.get('naziv'),
+        kategorijaSifra: parseFloat(podaci.get(`kategorijaSifra`)),
+        cijena: parseFloat(podaci.get(`cijena`))
     }
 
 );

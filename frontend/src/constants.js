@@ -11,9 +11,11 @@ export const RouteNames={
     KORISNIK_NOVI: '/korisnici/dodaj',
     KORISNIK_PROMJENA: 'korisnici/:sifra',
 
-    PROIZVODI_PREGLED: '/proizvod',
-    PROIZVOD_NOVI: '/proizvod/dodaj',
-    PROIZVODI_PROMJENA: 'proizvod/:sifra'
+    PROIZVODI_PREGLED: '/proizvodi',
+    PROIZVOD_NOVI: '/proizvodi/dodaj',
+    PROIZVODI_PROMJENA: 'proizvodi/:sifra'
+
+    
 }
 
 

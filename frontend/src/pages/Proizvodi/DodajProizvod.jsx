@@ -29,7 +29,9 @@ Dodaj(
     
     {
     
-        naziv: podaci.get('naziv')
+        naziv: podaci.get('naziv'),
+        kategorijaSifra: parseFloat(podaci.get(`kategorijaSifra`)),
+        cijena: parseFloat(podaci.get(`cijena`))
     }
 
 );
@@ -47,7 +49,7 @@ Dodaj(
             </Form.Group>
             <Form.Group controlId="cijena">
                 <Form.Label>Cijena</Form.Label>
-                <Form.Control type="decimal" name="cijena" required/>
+                <Form.Control type="decimal" name="cijena"/>
             </Form.Group>
             <Form.Group controlId="kategorija">
                 <Form.Label>Kategorija</Form.Label>
