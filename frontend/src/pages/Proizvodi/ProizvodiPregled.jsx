@@ -3,6 +3,7 @@ import { Button, Table } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import ProizvodiService from "../../services/ProizvodiService";
+import { NumericFormat } from "react-number-format";
 
 
 export default function ProizvodiPregled(){
