@@ -33,9 +33,9 @@ function App() {
           <Route path={RouteNames.KORISNIK_NOVI} element={< DodajKorisnika />} />
           <Route path={RouteNames.KORISNIK_PROMJENA} element={<KorisnikPromjena />}/>
        
-          <Route path={RouteNames.PROIZVOD_PREGLED} element={<ProizvodiPregled />} />
+          <Route path={RouteNames.PROIZVODI_PREGLED} element={<ProizvodiPregled />} />
           <Route path={RouteNames.PROIZVOD_NOVI} element={<DodajProizvod />} />
-          <Route path={RouteNames.PROIZVOD_PROMJENA} element={<ProizvodiPromjena />}/>
+          <Route path={RouteNames.PROIZVODI_PROMJENA} element={<ProizvodiPromjena />}/>
        
         </Routes>
 

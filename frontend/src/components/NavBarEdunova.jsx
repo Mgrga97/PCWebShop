@@ -34,14 +34,16 @@ const navigate=useNavigate()
                         onClick={()=>navigate(RouteNames.KORISNIK_PREGLED)}
                         >Korisnici</NavDropdown.Item>
 
-                        
+<NavDropdown.Item 
+                        onClick={()=>navigate(RouteNames.PROIZVODI_PREGLED)}
+                        >Proizvodi</NavDropdown.Item>
                         
                         </NavDropdown>
                         <Nav.Link href='https://markogrgic-001-site1.ptempurl.com/swagger' target='_blank'>Swagger</Nav.Link>
                         
                         
-                        <Nav.Link href='https://github.com/Mgrga97/UcenjeWP6/blob/main/SQL/ERA_Dijagram_pcwebshop.png' target='_blank'>ERA Dijagram</Nav.Link>
-                    </Nav>
+                        
+                        </Nav>
 
                     
                         
