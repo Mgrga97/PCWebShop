@@ -7,12 +7,12 @@ import ProizvodiService from "../../services/ProizvodiService";
 
 export default function ProizvodiPregled(){
 
-    const[proizvod,setProizvod] = useState();
+    const[proizvodi,setProizvodi] = useState([]);
     const navigate=useNavigate();
 
     async function DohvatiProizvod(){
         const odgovor = await ProizvodiService.get()
-        setProizvod(odgovor)
+        setProizvodi(odgovor)
     }
 
     //hooks (kuka) se izvodi prilikom dolaska na stranicu Kategorije
@@ -49,6 +49,8 @@ brisanjeProizvoda(sifra);
             <thead>
                 <tr>
                     <th>Naziv</th>
+                    <th>Cijena</th>
+                    <th>Kategorija</th>
                     <th>Akcija</th>
                 </tr>
             </thead>
@@ -57,6 +59,12 @@ brisanjeProizvoda(sifra);
                     <tr key={index}>
                         <td>
                             {proizvod.naziv}
+                        </td>
+                        <td>
+                            {proizvod.cijena}
+                        </td>
+                        <td>
+                            {proizvod.kategorijaNaziv}
                         </td>
                         <td>
                             <Button
