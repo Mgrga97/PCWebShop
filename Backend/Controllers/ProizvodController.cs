@@ -51,7 +51,7 @@ namespace Backend.Controllers
         /// <returns>DTO objekt proizvoda.</returns>
         [HttpGet]
         [Route("{sifra:int}")]
-        public ActionResult<ProizvodDTORead> GetBySifra(int sifra)
+        public ActionResult<ProizvodDTOInsertUpdate> GetBySifra(int sifra)
         {
             if (!ModelState.IsValid)
             {
@@ -60,7 +60,7 @@ namespace Backend.Controllers
             Proizvod? e;
             try
             {
-                e = _context.Proizvodi.Find(sifra);
+                e = _context.Proizvodi.Include(p => p.Kategorija).FirstOrDefault(p => p.Sifra == sifra);
 
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace Backend.Controllers
             {
                 return NotFound(new { poruka = "Proizvod ne postoji u bazi" });
             }
-            return Ok(_mapper.Map<ProizvodDTORead>(e));
+            return Ok(_mapper.Map<ProizvodDTOInsertUpdate>(e));
         }
         /// <summary>
         /// Dodaje novi proizvod.

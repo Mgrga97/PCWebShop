@@ -34,7 +34,10 @@ namespace Backend.Mapping
                );
 
             CreateMap<ProizvodDTOInsertUpdate, Proizvod>();
-            CreateMap<Proizvod, ProizvodDTOInsertUpdate>();
+            CreateMap<Proizvod, ProizvodDTOInsertUpdate>().ForMember(
+                opt=> opt.KategorijaSifra,
+                src=> src.MapFrom(src => src.Kategorija.Sifra)
+                );
 
 
             CreateMap<ListaZeljaDTOInsertUpdate, ListaZelja>();
