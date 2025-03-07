@@ -49,11 +49,11 @@ Dodaj(
             </Form.Group>
             <Form.Group controlId="cijena">
                 <Form.Label>Cijena</Form.Label>
-                <Form.Control type="decimal" name="cijena"/>
+                <Form.Control type="number" step={0.01} name="cijena"/>
             </Form.Group>
             <Form.Group controlId="kategorija">
                 <Form.Label>Kategorija</Form.Label>
-                <Form.Control type="text" name="kategorija" required/>
+                <Form.Control type="number" name="kategorija" required/>
             </Form.Group>
             
 
