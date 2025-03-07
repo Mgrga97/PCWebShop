@@ -60,9 +60,22 @@ brisanjeProizvoda(sifra);
                         <td>
                             {proizvod.naziv}
                         </td>
-                        <td>
-                            {proizvod.cijena}
+                        <td
+                           className={proizvod.cijena==null ? 'sredina' : 'desno'}>
+                            {proizvod.cijena==null ? 'Nije definirano' : 
+                             <NumericFormat 
+                             value={proizvod.cijena}
+                             displayType={'text'}
+                             thousandSeparator='.'
+                             decimalSeparator=','
+                             prefix={'€'}
+                             decimalScale={2}
+                             fixedDecimalScale
+                             />
+                             
+                             }
                         </td>
+                        
                         <td>
                             {proizvod.kategorijaNaziv}
                         </td>
