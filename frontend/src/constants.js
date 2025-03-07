@@ -17,4 +17,4 @@ export const RouteNames={
 }
 
 
-export const BACKEND_URL='markogrgic-001-site1.ptempurl.com/api/v1';
+export const BACKEND_URL='https://localhost:7013/api/v1';

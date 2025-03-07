@@ -45,6 +45,15 @@ Dodaj(
                 <Form.Label>Naziv</Form.Label>
                 <Form.Control type="text" name="naziv" required/>
             </Form.Group>
+            <Form.Group controlId="cijena">
+                <Form.Label>Cijena</Form.Label>
+                <Form.Control type="decimal" name="cijena" required/>
+            </Form.Group>
+            <Form.Group controlId="kategorija">
+                <Form.Label>Kategorija</Form.Label>
+                <Form.Control type="text" name="kategorija" required/>
+            </Form.Group>
+            
 
 
             <hr/>
