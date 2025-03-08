@@ -2,11 +2,26 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import ProizvodiService from "../../services/ProizvodiService";
+import KategorijeService from "../../services/KategorijeService";
 
 
 export default function DodajProizvod(){
 
     const navigate=useNavigate();
+
+    const [kategorija, setKategorija] = useState([]);
+  const [kategorijaSifra, setKategorijaSifra] = useState(0);
+
+  async function dohvatiKategorije(){
+    const odgovor = await KategorijeService.get();
+    setKategorija(odgovor.poruka);
+    setKategorijaSifra(odgovor.poruka[0].sifra);
+  }
+
+  useEffect(()=>{
+    dohvatiKategorije();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
 
 async function Dodaj(proizvod) {
@@ -55,6 +70,18 @@ Dodaj(
                 <Form.Label>Kategorija</Form.Label>
                 <Form.Control type="number" name="kategorija" required/>
             </Form.Group>
+            <Form.Group className='mb-3' controlId='kategorija'>
+            <Form.Label>Kategorija</Form.Label>
+            <Form.Select 
+            onChange={(e)=>{setSmjerSifra(e.target.value)}}
+            >
+            {kategorija && kategorija.map((s,index)=>(
+              <option key={index} value={s.sifra}>
+                {s.naziv}
+              </option>
+            ))}
+            </Form.Select>
+          </Form.Group>
             
 
 
