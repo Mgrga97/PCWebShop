@@ -20,14 +20,14 @@ async function getBySifra(sifra){
     .catch((e)=>{})
 }
 
-async function dodaj(Korisnici) {
-    return HttpService.post('/Korisnik',Korisnici)
+async function dodaj(Korisnik) {
+    return HttpService.post('/Korisnik',Korisnik)
     .then(()=>{return {greska: false,poruka: 'Dodano'}})
     .catch(()=>{return {greska: true,poruka: 'Problem kod dodavanja'}})
 }
 
-async function Promjena(sifra,Korisnici) {
-    return HttpService.put('/Korisnik/'+sifra,Korisnici)
+async function Promjena(sifra,Korisnik) {
+    return HttpService.put('/Korisnik/'+sifra,Korisnik)
     .then(()=>{return {greska: false,poruka: 'Promjenjeno'}})
     .catch(()=>{return {greska: true,poruka: 'Problem kod promjene'}})
 }
