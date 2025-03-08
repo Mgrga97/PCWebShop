@@ -12,7 +12,7 @@ const [proizvod,setProizvod]=useState({});
 const routeParams = useParams();
 
 async function dohvatiProizvod() {
-    const odgovor = await ProizvodiServiceervice.getBySifra(routeParams.sifra)
+    const odgovor = await ProizvodiService.getBySifra(routeParams.sifra)
     setProizvod(odgovor)
 }
 
