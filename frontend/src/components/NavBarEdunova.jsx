@@ -34,7 +34,7 @@ const navigate=useNavigate()
                         onClick={()=>navigate(RouteNames.KORISNIK_PREGLED)}
                         >Korisnici</NavDropdown.Item>
 
-<NavDropdown.Item 
+                        <NavDropdown.Item 
                         onClick={()=>navigate(RouteNames.PROIZVODI_PREGLED)}
                         >Proizvodi</NavDropdown.Item>
                         
