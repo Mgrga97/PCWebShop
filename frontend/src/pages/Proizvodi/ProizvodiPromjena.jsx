@@ -27,6 +27,7 @@ async function dohvatiProizvod() {
 
 useEffect(()=>{
     dohvatiProizvod();
+    dohvatiKategoriju();
 },[])
 
 
@@ -78,7 +79,7 @@ Promjena(
             >
             {kategorije && kategorije.map((s,index)=>(
               <option key={index} value={s.sifra}>
-                {s.naziv}
+                {s.naziv} 
               </option>
             ))}
             </Form.Select>
