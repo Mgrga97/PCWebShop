@@ -9,11 +9,18 @@ export default function ProizvodiPromjena(){
 
 const navigate = useNavigate();
 const [proizvod,setProizvod]=useState({});
+const [kategorijaSifra, setKategorijaSifra] = useState(0);
 const routeParams = useParams();
 
 async function dohvatiProizvod() {
     const odgovor = await ProizvodiService.getBySifra(routeParams.sifra)
-    setProizvod(odgovor)
+    if(odgovor.greska){
+        alert(odgovor.poruka)
+        return
+    }
+    let s = odgovor.poruka
+    setProizvod(s)
+    setKategorijaSifra(s.kategorijaSifra)
 }
 
 useEffect(()=>{
@@ -43,8 +50,8 @@ Promjena(
     {
     
         naziv: podaci.get('naziv'),
-        kategorijaSifra: parseFloat(podaci.get(`kategorijaSifra`)),
-        cijena: parseFloat(podaci.get(`cijena`))
+        kategorijaSifra:('kategorijaSifra'),
+        cijena: parseFloat(podaci.get('cijena'))
     }
 
 );
@@ -61,6 +68,23 @@ Promjena(
                 <Form.Control type="text" name="naziv" required
                 defaultValue={proizvod.naziv}/>
             </Form.Group>
+            <Form.Group controlId="cijena">
+                <Form.Label>Cijena</Form.Label>
+                <Form.Control type="number" step={0.01} name="cijena"/>
+            </Form.Group>
+      
+            <Form.Group className='mb-3' controlId='kategorija'>
+            <Form.Label>Kategorija</Form.Label>
+            <Form.Select 
+            onChange={(e)=>{setKategorijaSifra(e.target.value)}}
+            >
+            {kategorije && kategorije.map((s,index)=>(
+              <option key={index} value={s.sifra}>
+                {s.naziv}
+              </option>
+            ))}
+            </Form.Select>
+          </Form.Group>
             
 
 
