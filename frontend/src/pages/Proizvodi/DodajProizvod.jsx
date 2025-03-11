@@ -71,7 +71,7 @@ Dodaj(
             <Form.Group className='mb-3' controlId='kategorija'>
             <Form.Label>Kategorija</Form.Label>
             <Form.Select 
-            onChange={(e)=>{setSmjerSifra(e.target.value)}}
+            onChange={(e)=>{setKategorijaSifra(e.target.value)}}
             >
             {kategorije && kategorije.map((s,index)=>(
               <option key={index} value={s.sifra}>
