@@ -3,19 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import ProizvodiService from "../../services/ProizvodiService";
 import KategorijeService from "../../services/KategorijeService";
+import { useEffect, useState } from "react";
 
 
 export default function DodajProizvod(){
 
     const navigate=useNavigate();
 
-    const [kategorija, setKategorija] = useState([]);
+    const [kategorije, setKategorije] = useState([]);
   const [kategorijaSifra, setKategorijaSifra] = useState(0);
 
   async function dohvatiKategorije(){
     const odgovor = await KategorijeService.get();
-    setKategorija(odgovor.poruka);
-    setKategorijaSifra(odgovor.poruka[0].sifra);
+    setKategorije(odgovor);
+    setKategorijaSifra(odgovor[0].sifra);
   }
 
   useEffect(()=>{
@@ -45,8 +46,8 @@ Dodaj(
     {
     
         naziv: podaci.get('naziv'),
-        kategorijaSifra: parseFloat(podaci.get(`kategorijaSifra`)),
-        cijena: parseFloat(podaci.get(`cijena`))
+        kategorijaSifra: kategorijaSifra,
+        cijena: parseFloat(podaci.get('cijena'))
     }
 
 );
@@ -66,16 +67,13 @@ Dodaj(
                 <Form.Label>Cijena</Form.Label>
                 <Form.Control type="number" step={0.01} name="cijena"/>
             </Form.Group>
-            <Form.Group controlId="kategorija">
-                <Form.Label>Kategorija</Form.Label>
-                <Form.Control type="number" name="kategorija" required/>
-            </Form.Group>
+      
             <Form.Group className='mb-3' controlId='kategorija'>
             <Form.Label>Kategorija</Form.Label>
             <Form.Select 
             onChange={(e)=>{setSmjerSifra(e.target.value)}}
             >
-            {kategorija && kategorija.map((s,index)=>(
+            {kategorije && kategorije.map((s,index)=>(
               <option key={index} value={s.sifra}>
                 {s.naziv}
               </option>
