@@ -9,6 +9,7 @@ export default function ProizvodiPromjena(){
 
 const navigate = useNavigate();
 const [proizvod,setProizvod]=useState({});
+const [kategorije, setKategorije] = useState([]);
 const [kategorijaSifra, setKategorijaSifra] = useState(0);
 const routeParams = useParams();
 
@@ -20,6 +21,7 @@ async function dohvatiProizvod() {
     }
     let s = odgovor.poruka
     setProizvod(s)
+    setKategorije(s)
     setKategorijaSifra(s.kategorijaSifra)
 }
 
@@ -31,7 +33,7 @@ useEffect(()=>{
 async function Promjena(proizvod) {
     const odgovor = await ProizvodiService.Promjena(routeParams.sifra,proizvod);
     if(odgovor.greska){
-        alert(odgovor.poruka)
+        alert(odgovor)
         return
     }
     navigate(RouteNames.PROIZVODI_PREGLED)
@@ -41,21 +43,17 @@ async function Promjena(proizvod) {
 
 function odradiSubmit(e){ // e je event
 e.preventDefault(); // nemoj napraviti zahtjev na server po standardnom načinu
-
 let podaci = new FormData(e.target);
-
 Promjena(
-    
-    
     {
     
         naziv: podaci.get('naziv'),
-        kategorijaSifra:('kategorijaSifra'),
+        kategorijaSifra:kategorijaSifra,
         cijena: parseFloat(podaci.get('cijena'))
-    }
-
-);
+    });
 }
+
+
     return(
 
         <>
